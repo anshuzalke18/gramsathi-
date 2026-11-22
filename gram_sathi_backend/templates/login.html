@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>लॉगिन | ग्रामसाथी AI Village Assistant</title>
+<style>
+:root{--green:#173f2b;--green2:#2f7046;--light:#f7faf5;--card:#ffffff;--muted:#66756c;--border:#e1e9df;--shadow:0 12px 35px rgba(23,63,43,.09);}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:linear-gradient(135deg,#ddeed9,#fff4cf);min-height:100vh;display:flex;align-items:center;justify-content:center;color:#203127;}
+.auth-container{width:100%;max-width:440px;padding:20px;}
+.auth-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:var(--shadow);}
+.brand{font-size:28px;font-weight:800;color:var(--green);text-align:center;margin-bottom:6px;}
+.brand-sub{text-align:center;color:var(--muted);font-size:14px;margin-bottom:28px;}
+label{display:block;font-weight:700;margin:14px 0 6px;color:var(--green);font-size:14px;}
+input{width:100%;padding:13px 14px;border:1px solid #ccd9ca;border-radius:11px;background:white;outline:none;font:inherit;}
+input:focus{border-color:#4d8b57;box-shadow:0 0 0 3px rgba(77,139,87,.12);}
+.btn{width:100%;margin-top:22px;border:0;border-radius:11px;padding:14px;background:var(--green);color:white;font-weight:700;font-size:16px;cursor:pointer;transition:.2s;}
+.btn:hover{background:#21563a;}
+.footer-link{text-align:center;margin-top:20px;font-size:14px;color:var(--muted);}
+.footer-link a{color:var(--green);font-weight:700;text-decoration:none;}
+.footer-link a:hover{text-decoration:underline;}
+.alert{padding:12px;border-radius:10px;margin-bottom:16px;font-size:14px;font-weight:600;}
+.alert-success{background:#eaf5e7;color:#2f7046;border:1px solid #c2e2c7;}
+.alert-danger{background:#fff1f0;color:#d43c32;border:1px solid #f6d2ce;}
+</style>
+</head>
+<body>
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="brand">🌿 ग्रामसाथी</div>
+    <div class="brand-sub">AI Village Assistant - लॉगिन</div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <label>👤 युजरनेम किंवा ईमेल</label>
+      <input type="text" name="username" placeholder="तुमचे युजरनेम टाка" required autofocus>
+      
+      <label>🔒 पासवर्ड</label>
+      <input type="password" name="password" placeholder="••••••••" required>
+      
+      <button type="submit" class="btn">लॉगिन करा (Login)</button>
+    </form>
+
+    <div class="footer-link">
+      खाते नाहीये का? <a href="{{ url_for('register') }}">नवीन नोंदणी करा</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
